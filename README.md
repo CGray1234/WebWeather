@@ -1,5 +1,6 @@
-## ![WebWeather](./assets/logo.png)
-This does what the title says: gets a weather forecast for your location.
+## <img src="./assets/logo.png" alt="WebWeather Logo" width="500"/>
+WebWeather is a fast & simple website that displays your local weather forecast, alerts, and radar all in one place.
+
 
 > [!NOTE]
 > It is recommended that you use a 16:9 aspect ratio when using this app
