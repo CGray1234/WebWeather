@@ -6,6 +6,8 @@ This does what the title says: gets a weather forecast for your location.
 
 ## 🌩️ Features:
 - 🌧️ 5-day forecast from the NWS for your location
+- 🗺️ Live radar map
+- 📡 Radar updates every minute (experimental)
 - ⚠️ Alerts for your location
 - 🔔 Notifies you when a new alert is issued for your location
 - 🔄️ Forecast automatically refreshes every minute

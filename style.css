@@ -294,3 +294,24 @@ button#hideLocation {
 button#hideLocation:hover {
     background-color: gray;
 }
+
+#map {
+    width: 250px;
+    height: 150px;
+    position: absolute;
+    background-color: white;
+    bottom:0;
+    right:0;
+}
+
+#mapLabel {
+    width: 245px;
+    text-align: left;
+    height: 24px;
+    font-size: 20px;
+    position: absolute;
+    background-color: white;
+    bottom:150px;
+    right:0px;
+    padding-left: 5px;
+}

@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ForecastHeader = document.getElementById('ForecastHeader')
 
     const locationButton = document.getElementById('hideLocation');
-    var showLocation = true;
+    var showLocation = false;
 
     const day1highText = document.getElementById('hiDay1');
     const day1lowText = document.getElementById('loDay1');
