@@ -23,8 +23,9 @@
     src: url(./assets/Barlow-SemiBold.ttf);
 }
 
-* {
-    font-family: 'Bebas Neue';
+@font-face {
+    font-family: 'Metropolis ExtraBold';
+    src: url(./assets/Metropolis-ExtraBold.otf);
 }
 
 @keyframes warning-icon {
@@ -202,6 +203,7 @@ div#ForecastHeader {
     margin-right: 10px;
     width: 20%;
     font-size: 50px;
+    font-family: Bebas Neue;
 }
 
 .conditions {
@@ -311,7 +313,10 @@ button#hideLocation:hover {
     font-size: 20px;
     position: absolute;
     background-color: white;
-    bottom:150px;
+    bottom:147px;
     right:0px;
     padding-left: 5px;
+    padding-top: 3px;
+    padding-bottom: -4px;
+    font-family: "Metropolis ExtraBold";
 }
