@@ -1,0 +1,296 @@
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url(./assets/BEBASNEUE-REGULAR.TTF);
+}
+
+@font-face {
+    font-family: 'Barlow-ExtraLight';
+    src: url(./assets/Barlow-ExtraLight.ttf);
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: url(./assets/Barlow-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Barlow-ExtraBold';
+    src: url(./assets/Barlow-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: 'Barlow-SemiBold';
+    src: url(./assets/Barlow-SemiBold.ttf);
+}
+
+* {
+    font-family: 'Bebas Neue';
+}
+
+@keyframes warning-icon {
+    0% {color: rgba(255, 255, 255, 1);}
+    50% {color: rgba(255, 255, 255, 0.5);}
+    100% {color: rgba(255, 255, 255, 0.99);}
+}
+
+body {
+    background-color: rgb(80, 80, 80);
+}
+
+.hl {
+    border-top: 5px solid rgb(255, 255, 255);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 1000,
+  'GRAD' 0,
+  'opsz' 512
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+span#warningIcon {
+    animation: warning-icon 1s infinite linear;
+}
+
+div#singleWarningContainer {
+    width: 600px;
+}
+
+div#warningTitle {
+    background-color: rgb(207, 0, 0);
+    font-size: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 600px;
+    color: white;
+}
+
+div#warningInfo {
+    background-color: rgb(151, 0, 0);
+    font-size: 35px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide any overflow */
+    width: 600px;
+    text-overflow: ellipsis; /* Add an ellipsis for overflow text */
+}
+
+div#expires {
+    background-color: black;
+    font-size: 35px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 600px;
+    color: white;
+}
+
+button#detailsButton {
+    display: inline-block;
+    background-color: white;
+    border: none;
+    right: 3px;
+    position:relative;
+    top: -50px;
+    width: 33px;
+    height: 150px;
+    font-size: 30px;
+    z-index: 1;
+}
+
+button#detailsButton:hover {
+    background-color: darkgrey;
+    border: none;
+}
+
+div#details {
+    z-index: 2;
+    position: fixed;
+    height: 90%;
+    width: 90%;
+    top: 5%;
+    left: 5%;
+    display: none;
+}
+
+div#detailsBG {
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+div#detailsEvent {
+    background-color: rgb(255, 0, 0);
+    z-index: 3;
+    font-size: 50px;
+    text-align: center;
+    color: white;
+}
+
+div#detailsArea {
+    z-index: 3;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: rgb(0, 0, 0);
+}
+
+div#extraDetails {
+    z-index: 3;
+    font-size: 25px;
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+div#detailsDesc {
+    z-index: 3;
+    font-size: 30px;
+    color: white;
+    background-color: black;
+    overflow: auto;
+    height: 85%;
+}
+
+.test {
+    background-color: rgb(255, 203, 33);
+}
+
+div#ForecastHeader {
+    background-color: lightgray;
+    font-family: 'Barlow-ExtraBold';
+    font-size: 75px;
+    color: white;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
+}
+
+.forecastContainer {
+    display: flex;
+    text-align: center;
+    margin-top: 10px;
+    padding-bottom: 15px;
+    text-align: center;
+    display: flex;
+    width: 100%;
+}
+
+.forecastDay {
+    background-color: rgb(124, 124, 124);
+    color: white;
+    margin-right: 10px;
+    width: 20%;
+    font-size: 50px;
+}
+
+.conditions {
+    background-color: rgb(190, 190, 190);
+    padding-top: 30px;
+    overflow: hidden;
+}
+
+.weatherIcon {
+    border-radius: 10%;
+    height: 75px;
+    width: auto;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(359deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.hurricane {
+    border-radius: 10%;
+    height: 75px;
+    width: auto;
+    fill: red;
+    animation: rotate 10s infinite linear;
+}
+
+.temp {
+    font-family: "Barlow";
+}
+
+.forecast {
+    font-family: "Barlow-SemiBold";
+    font-size: 50px;
+    line-height: 0px;
+}
+
+.windIcon {
+    width: 35px;
+    padding-top: 20px;
+}
+
+button#openWarnings {
+    display: block;
+    font-size: 30px;
+    border: none;
+    background-color: white;
+    color: red;
+    position: fixed;
+    bottom:0;
+    width: 300px;
+    font-size: 40px;
+    height:50px;
+    z-index: 1;
+}
+
+button#openWarnings:hover {
+    background-color: darkgray;
+    border: none;
+}
+
+div#alertsContainer {
+    background-color: grey;
+    width: 685px;
+    height: 959px;
+    position: fixed;
+    top:0;
+    margin-bottom: 30px;
+    padding-top: 10px;
+    padding-left:10px;
+    overflow-y: auto;
+    display: none;
+}
+
+button#hideLocation {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    height: 80px;
+    font-size: 50px;
+    border: none;
+    background-color: darkgray;
+}
+
+button#hideLocation:hover {
+    background-color: gray;
+}

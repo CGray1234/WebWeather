@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" href="style.css">
+        <title>Weather Alerts</title>
+
+        <script src="alerts.js"></script>
+        <script src="forecast.js"></script>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    </head>
+    <body>
+        <!-- 
+            <button id="testAlert" class="testAlert" style="font-size: 50px;">Send Test Alert</button>
+        --->
+
+        <div id="ForecastHeader">
+            5-Day Forecast
+        </div>
+        <button id="hideLocation">Hide location</button>
+        <div class="forecastContainer">
+            <div class="forecastDay" id="day1">
+                <span id="day1label">Today</span>
+                <div class="conditions">
+                    <img id="day1icon" class="weatherIcon" src="/sun-solid.png" width="100px">
+                    <br/>
+                    <span class="temp" id="hiDay1">HI: 00°F</span>
+                    <br/>
+                    <span class="temp"id="loDay1">LO: 00°F</span>
+                    <div class="hl"></div>
+                    <img class="windIcon" src="./assets/wind-solid.svg" />
+                    <span id="day1wind" class="temp">Winds</span>
+                    <div class="hl"></div>
+                    <span class="forecast" id="day1forecast">Placeholder</span>
+                </div>
+            </div>
+            <div class="forecastDay" id="day2">
+                <span id="day2label">Day2</span>
+                <div class="conditions">
+                    <img id="day2icon" class="weatherIcon" src="/sun-solid.png" width="100px">
+                    <br/>
+                    <span class="temp" id="hiDay2">HI: 00°F</span>
+                    <br/>
+                    <span class="temp"id="loDay2">LO: 00°F</span>
+                    <div class="hl"></div>
+                    <img class="windIcon" src="./assets/wind-solid.svg" />
+                    <span id="day2wind" class="temp">Winds</span>
+                    <div class="hl"></div>
+                    <span class="forecast" id="day2forecast">Placeholder</span>
+                </div>
+            </div>
+            <div class="forecastDay" id="day3">
+                <span id="day3label">Day3</span>
+                <div class="conditions">
+                    <img id="day3icon" class="weatherIcon" src="/sun-solid.png" width="100px">
+                    <br/>
+                    <span class="temp" id="hiDay3">HI: 00°F</span>
+                    <br/>
+                    <span class="temp"id="loDay3">LO: 00°F</span>
+                    <div class="hl"></div>
+                    <img class="windIcon" src="./assets/wind-solid.svg" />
+                    <span id="day3wind" class="temp">Winds</span>
+                    <div class="hl"></div>
+                    <span class="forecast" id="day3forecast">Placeholder</span>
+                </div>
+            </div>
+            <div class="forecastDay" id="day4">
+                <span id="day4label">Day4</span>
+                <div class="conditions">
+                    <img id="day4icon" class="weatherIcon" src="/sun-solid.png" width="100px">
+                    <br/>
+                    <span class="temp" id="hiDay4">HI: 00°F</span>
+                    <br/>
+                    <span class="temp"id="loDay4">LO: 00°F</span>
+                    <div class="hl"></div>
+                    <img class="windIcon" src="./assets/wind-solid.svg" />
+                    <span id="day4wind" class="temp">Winds</span>
+                    <div class="hl"></div>
+                    <span class="forecast" id="day4forecast">Placeholder</span>
+                </div>
+            </div>
+            <div class="forecastDay" id="day5" style="margin-right: 0;">
+                <span id="day5label">Day5</span>
+                <div class="conditions">
+                    <img id="day5icon" class="weatherIcon" src="/sun-solid.png" width="100px">
+                    <br/>
+                    <span class="temp" id="hiDay5">HI: 00°F</span>
+                    <br/>
+                    <span class="temp"id="loDay5">LO: 00°F</span>
+                    <div class="hl"></div>
+                    <img class="windIcon" src="./assets/wind-solid.svg" />
+                    <span id="day5wind" class="temp">Winds</span>
+                    <div class="hl"></div>
+                    <span class="forecast" id="day5forecast">Placeholder</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="alertsContainer">
+            
+        </div>
+
+        <button id="openWarnings" style="font-family: 'Barlow-ExtraBold'; text-align: left;">
+            <span class="material-symbols-rounded" style="font-size: 30px; padding-right: 10px;">
+                warning
+            </span>Alerts
+        </button>
+
+        <div id="singleWarningContainer" style="display: none;">
+            <div style="display: inline-block;">
+                <div id="warningTitle">
+                    <span class="material-symbols-rounded" id="warningIcon" style="font-size: 30px; padding-right: 10px;">
+                        warning
+                    </span>
+                    <span id="event">test</span>
+                </div>
+                <div id="warningInfo">test</div>
+                <div id="expires">test</div>
+            </div>
+
+            <button id="detailsButton">
+                <p class="material-symbols-outlined">chevron_right</p>
+            </button>
+        </div>
+
+        <div id="detailsBG">
+        </div>
+        <div id="details">
+            <div id="detailsEvent">test</div>
+            <div id="detailsArea">test</div>
+            <div id="extraDetails">test</div>
+            <div id="detailsDesc">test</div>
+        </div>
+    </body>
+</html>
