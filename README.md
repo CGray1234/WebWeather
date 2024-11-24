@@ -1,8 +1,8 @@
 # ☀️ Forecast for location
 This does what the title says: gets a weather forecast for your location.
 
-> [!CAUTION]
-> This website will work ONLY with a 16:9 aspect ratio
+> [!NOTE]
+> It is recommended that you use a 16:9 aspect ratio when using this app
 
 ## 🌩️ Features:
 - 🌧️ 5-day forecast from the NWS for your location
