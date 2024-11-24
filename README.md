@@ -1,4 +1,4 @@
-# ☀️ Forecast for location
+## ![WebWeather](./assets/logo.png)
 This does what the title says: gets a weather forecast for your location.
 
 > [!NOTE]
