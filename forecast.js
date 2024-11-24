@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const day5icon = document.getElementById('day5icon');
 
     function getForecast() {
-        navigator.geolocation.getCurrentPosition(getForecastForLocation);
+        navigator.geolocation.getCurrentPosition(getForecastForLocation, function() {return;}, { enableHighAccuracy: true});
     }
 
     const api = 'https://api.weather.gov/points/'

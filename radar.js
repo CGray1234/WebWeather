@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     function loadMap() {
-        navigator.geolocation.getCurrentPosition(setMapToLocation);
+        navigator.geolocation.getCurrentPosition(setMapToLocation, function() {return;}, { enableHighAccuracy: true});
     }
 
     function setMapToLocation(location) {
