@@ -344,6 +344,8 @@ button#mapLabel:hover {
 
 button#mapReturn {
     border: none;
+    border-radius: 5px;
+    filter: drop-shadow(0 0 5px black);
     text-align: left;
     font-size: 20px;
     position: fixed;

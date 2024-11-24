@@ -69,8 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 var img = L.DomUtil.create('img');
         
                 img.src = './assets/logo.png';
-                img.style.width = '300px';
-                img.style.filter = 'drop-shadow(0 0 1px black)'
+                img.style.width = '400px';
+                img.style.paddingBottom = '10px';
+                img.style.paddingLeft = '10px';
+                img.style.filter = 'drop-shadow(0 0 3px black)';
         
                 return img;
             },
