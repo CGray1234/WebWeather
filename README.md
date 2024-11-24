@@ -1,7 +1,7 @@
 # ☀️ Forecast for location
 This does what the title says: gets a weather forecast for your location.
 
-> [!WARNING]
+> [!CAUTION]
 > This website will work ONLY with a 16:9 aspect ratio
 
 ## 🌩️ Features:
