@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 day2highText.innerHTML = `Hi: ${day2high}°F`;
                 day2lowText.innerHTML = `Lo: ${day2low}°F`;
                 day2windLabel.innerHTML = `${periods[2 - startIndex].windDirection} at ${periods[2 - startIndex].windSpeed}`;
-                day2label.innerHTML = periods[2 - startIndex].name.slice(0, 3);
+                day2label.innerHTML = periods[2 - startIndex].name//.slice(0, 3);
                 const day2shortForecast = periods[2 - startIndex].shortForecast;
                 day2forecast.innerHTML = day2shortForecast;
                 checkForHurricane(day2shortForecast, day2icon, true);
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 day3highText.innerHTML = `Hi: ${day3high}°F`;
                 day3lowText.innerHTML = `Lo: ${day3low}°F`;
                 day3windLabel.innerHTML = `${periods[4 - startIndex].windDirection} at ${periods[4 - startIndex].windSpeed}`;
-                day3label.innerHTML = periods[4 - startIndex].name.slice(0, 3);
+                day3label.innerHTML = periods[4 - startIndex].name//.slice(0, 3);
                 const day3shortForecast = periods[4 - startIndex].shortForecast;
                 day3forecast.innerHTML = day3shortForecast;
                 checkForHurricane(day3shortForecast, day3icon, true);
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 day4highText.innerHTML = `Hi: ${day4high}°F`;
                 day4lowText.innerHTML = `Lo: ${day4low}°F`
                 day4windLabel.innerHTML = `${periods[6 - startIndex].windDirection} at ${periods[6 - startIndex].windSpeed}`;
-                day4label.innerHTML = periods[6 - startIndex].name.slice(0, 3);
+                day4label.innerHTML = periods[6 - startIndex].name//.slice(0, 3);
                 day4forecast.innerHTML = periods[6 - startIndex].shortForecast;
                 const day4shortForecast = periods[6 - startIndex].shortForecast;
                 day4forecast.innerHTML = day4shortForecast;
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 day5highText.innerHTML = `Hi: ${day5high}°F`;
                 day5lowText.innerHTML = `Lo: ${day5low}°F`;
                 day5windLabel.innerHTML = `${periods[8 - startIndex].windDirection} at ${periods[8 - startIndex].windSpeed}`;
-                day5label.innerHTML = periods[8 - startIndex].name.slice(0, 3);
+                day5label.innerHTML = periods[8 - startIndex].name//.slice(0, 3);
                 const day5shortForecast = periods[8 - startIndex].shortForecast;
                 day5forecast.innerHTML = day5shortForecast;
                 checkForHurricane(day5shortForecast, day5icon, true);
