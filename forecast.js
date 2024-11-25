@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (forecast.toLowerCase().includes('chance') && (forecast.toLowerCase().includes('showers') || forecast.toLowerCase().includes('rain'))) {
                 return './assets/cloud-sun-rain-solid.png';
             } else if (forecast.toLowerCase().includes('rain') || forecast.toLowerCase().includes('shower')) {
-                return './assets/cloud-sun-rain.png';
+                return './assets/cloud-showers-heavy-solid.png';
             }  else if (forecast.toLowerCase().includes('mostly sunny') || forecast.toLowerCase().includes('partly sunny') || forecast.toLowerCase().includes('mostly cloudy')) {
                 return './assets/cloud-sun-solid.png';
             } else if (forecast.toLowerCase().includes('sunny')) {
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (forecast.toLowerCase().includes("storm")) {
                 return './assets/cloud-bolt-solid.png';
             } else if (forecast.toLowerCase().includes('rain') || forecast.toLowerCase().includes('shower')) {
-                return './assets/cloud-moon-rain.png';
+                return './assets/cloud-moon-rain-solid.png';
             } else if (forecast.toLowerCase().includes('mostly clear') || forecast.toLowerCase().includes('partly sunny') || forecast.toLowerCase().includes('mostly cloudy')) {
                 return './assets/cloud-moon-solid.svg';
             } else if (forecast.toLowerCase().includes('clear')) {
