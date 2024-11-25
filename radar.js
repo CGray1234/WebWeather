@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        L.tileLayer.wms("https://opengeo.ncep.noaa.gov/geoserver/conus/conus_bref_qcd/ows?", {
-            layers: 'conus_bref_qcd',
+        L.tileLayer.wms("https://opengeo.ncep.noaa.gov/geoserver/conus/conus_cref_qcd/ows?", {
+            layers: 'conus_cref_qcd',
             format: 'image/png',
             transparent: true
         }).addTo(map);

@@ -7,7 +7,7 @@
 
 # ⚡ Features:
 - 🌧️ 5-day forecast from the NWS for your location
-- 🗺️ Live radar map with watches & warnings
+- 🗺️ Live CONUS composite reflectivity radar map with watches & warnings
 - 📡 Radar updates every minute (experimental), alerts update every 30 seconds
 - ⚠️ Alerts for your location
 - 🔔 Notifies you when a new alert is issued for your location
