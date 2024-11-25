@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function setMapToLocation(location) {
         const coords = [location.coords.latitude, location.coords.longitude];
-        //const coords = [44, -103] // use for testing
+        // const coords = [44, -103] // use for testing
 
         var map = L.map('map', {zoomControl: false}).setView(coords, 10);
 
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         }
         fetchAlerts();
-        setInterval(fetchAlerts, 5000);
+        setInterval(fetchAlerts, 30000);
 
         var alertDescActive = false;
         function showAlertDescription() {
@@ -134,139 +134,161 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function loadPolygons(data) {
             alertsLayerGroup.clearLayers();
-
             data.forEach(alert => {
+                
+                if (alert.geometry == null) {
+                    var zones = alert.properties.affectedZones;
 
-                var dashes = 0;
-                var color = 'blue';
-                var fillOpacity = 0;
-                var fillColor = 'transparent';
+                    for (var i = 0; i < zones.length; i++) {
+                        fetch(zones[i]).then(res => res.json()).then(data => {
+                            mapAlert(alert, data.geometry)
+                        })
+                    }
+                } else {
+                    mapAlert(alert, alert.geometry)
+                }
+            });
 
-                const event = alert.properties.event;
-
-                // tornado warnings = red solid
+            // tornado warnings = red solid
                 // tor confirmed = red dash
                 // pds tor = pink solid
                 // tor e = pink dash
 
-                if (event == 'Tornado Warning') {
-                    if (alert.properties.parameters.tornadoDamageThreat && alert.properties.parameters.tornadoDamageThreat == 'CATASTROPHIC') {
-                        color = 'magenta';
-                        dashes = 10;
-                    } else if (alert.properties.parameters.tornadoDamageThreat && alert.properties.parameters.tornadoDamageThreat == 'CONSIDERABLE') {
-                        color = 'magenta';
-                    } else if (alert.properties.parameters.tornadoDetection == 'OBSERVED') {
-                        color = 'red';
-                        dashes = 10;
-                    } else {
-                        color = 'red';
-                    }
-                } else if (event == 'Severe Thunderstorm Warning') {
-                    color = 'rgb(255, 196, 0)';
-                    if (alert.properties.parameters.thunderstormDamageThreat && alert.properties.parameters.thunderstormDamageThreat == 'DESTRUCTIVE') {
-                        dashes = 10;
-                        fillOpacity = 0.5;
-                        fillColor = 'magenta';
-                    } else if (alert.properties.parameters.thunderstormDamageThreat && alert.properties.parameters.thunderstormDamageThreat == 'CONSIDERABLE') {
-                        dashes = 10;
-                    }
-                } else if (event == 'Flash Flood Warning') {
-                    color = 'rgb(0, 255, 0)'
-                    if (alert.properties.parameters.flashFloodDamageThreat && alert.properties.parameters.flashFloodDamageThreat == 'CATASTROPHIC') {
-                        dashes = 10;
-                    }
-                } else if (event == 'Flood Warning') {
-                    color = 'green';
+                function mapAlert(alert, geometry) {
+                    var dashes = 0;
+                    var color = 'blue';
+                    var fillOpacity = 0;
+                    var fillColor = 'transparent';
 
+                    if (alert.properties.event == 'Tornado Warning') {
+                        if (alert.properties.parameters.tornadoDamageThreat && alert.properties.parameters.tornadoDamageThreat == 'CATASTROPHIC') {
+                            color = 'magenta';
+                            dashes = 10;
+                        } else if (alert.properties.parameters.tornadoDamageThreat && alert.properties.parameters.tornadoDamageThreat == 'CONSIDERABLE') {
+                            color = 'magenta';
+                        } else if (alert.properties.parameters.tornadoDetection == 'OBSERVED') {
+                            color = 'red';
+                            dashes = 10;
+                        } else {
+                            color = 'red';
+                        }
+                    } else if (alert.properties.event == 'Severe Thunderstorm Warning') {
+                        color = 'rgb(255, 196, 0)';
+                        if (alert.properties.parameters.thunderstormDamageThreat && alert.properties.parameters.thunderstormDamageThreat == 'DESTRUCTIVE') {
+                            dashes = 10;
+                            fillOpacity = 0.5;
+                            fillColor = 'magenta';
+                        } else if (alert.properties.parameters.thunderstormDamageThreat && alert.properties.parameters.thunderstormDamageThreat == 'CONSIDERABLE') {
+                            dashes = 10;
+                        }
+                    } else if (alert.properties.event == 'Flash Flood Warning') {
+                        color = 'rgb(0, 255, 0)'
+                        if (alert.properties.parameters.flashFloodDamageThreat && alert.properties.parameters.flashFloodDamageThreat == 'CATASTROPHIC') {
+                            dashes = 10;
+                        }
+                    } else if (alert.properties.event == 'Flood Warning') {
+                        color = 'green';
+                    } else if (alert.properties.event == 'Winter Weather Advisory') {
+                        color = 'rgb(32,77,158)';
+                    } else if (alert.properties.event == 'Winter Storm Warning') {
+                        color = 'rgb(254,106,179)';
+                    } else if (alert.properties.event == 'Winter Storm Watch') {
+                        color = 'rgb(32,77,158)';
+                    } else if (alert.properties.event == 'Severe Thunderstorm Watch') {
+                        color = 'rgb(255,255,0)';
+                    } else if (alert.properties.event == 'Tornado Watch') {
+                        color = 'salmon';
+                    } else if (alert.properties.event == 'Special Weather Statement') {
+                        color = 'rgb(135,206,235)';
+                    }
+
+                    const alertOutline = L.geoJSON(geometry, {
+                        style: {
+                            color: 'black',
+                            weight: 5,
+                            opacity: 1,
+                            fillColor: fillColor,
+                            fillOpacity: fillOpacity
+                        }
+                    });
+
+                    const alertLayer = L.geoJSON(geometry, {
+                        style: {
+                            color: color,
+                            weight: 2,
+                            opacity: 1,
+                            dashArray: dashes,
+                            fillColor: 'transparent',
+                            fillOpacity: 0
+                        }
+                    });
+
+                    const options = {
+                        month: 'short',
+                        day: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true
+                    }; 
+
+                    alertLayer.on('click', function() {
+                        alertEvent.innerHTML = alert.properties.event;
+                        alertEvent.style.backgroundColor = color;
+                        alertDetails.innerText = `${alert.properties.areaDesc}\nExpires: ${Intl.DateTimeFormat('en-US', options).format(new Date(alert.properties.expires))}\n`;
+            
+                        alertDetails.style.display = 'block';
+                        alertDropdown.style.display = 'block';
+                        closeWarningButton.style.display = 'block';
+                        alertEventBG.style.display = 'block';
+            
+                        descriptionDisplay.innerHTML = alert.properties.description.replace(/\n/g, '<br/>');
+            
+                        if (alert.properties.event == "Severe Thunderstorm Warning") {
+                            if (alert.properties.parameters.thunderstormDamageThreat == "DESTRUCTIVE") {
+                                alertDetails.innerHTML += "<i style='background-color: purple; padding-left: 5px; padding-right: 10px; border-radius: 5px;'>THIS IS A DESTRUCTIVE STORM</i><br/>";
+                            } else if (alert.properties.parameters.thunderstormDamageThreat == "CONSIDERABLE") {
+                                alertDetails.innerHTML += "<i style='background-color: white; color: black; padding-left: 5px; padding-right: 10px; border-radius: 5px;'>THIS IS A CONSIDERABLE STORM</i><br/>";
+                            }
+            
+                            var hail;
+                            
+                            if (alert.properties.parameters.maxHailSize) {
+                                hail = alert.properties.parameters.maxHailSize;
+                            } else {
+                                hail = '0.00';
+                            }
+            
+                            alertDetails.innerHTML += `Hail: ${hail} in<br/>`;
+                            alertDetails.innerHTML += `Wind: ${alert.properties.parameters.maxWindGust}<br/>`;
+            
+                            if (alert.properties.parameters.tornadoDetection) {
+                                alertDetails.innerHTML += `Tornado: <span style="color: red;">${alert.properties.parameters.tornadoDetection}</span>`;
+                            }
+                        } else if (alert.properties.event == "Tornado Warning") {
+            
+                            if (alert.properties.parameters.tornadoDetection == "OBSERVED") {
+                                alertDetails.innerHTML += `Tornado: <span style="background-color: white; color: red; padding-left: 5px; padding-right: 5px; border-radius: 5px;">${alert.properties.parameters.tornadoDetection}</span><br/>`;
+                            } else {
+                                alertDetails.innerHTML += `Tornado: ${alert.properties.parameters.tornadoDetection}<br/>`;
+                            }
+            
+                            alertDetails.innerHTML += `Hail: ${alert.properties.parameters.maxHailSize} in`;
+                        } else if (alert.properties.event == "Flash Flood Warning") {
+                            if (alert.properties.parameters.flashFloodDamageThreat == "CATASTROPHIC") {
+                                alertEvent.innerHTML = 'FLASH FLOOD EMERGENCY';
+                                alertDetails.innerHTML += "Flash Flood Damage Threat: <span style='background-color: magenta; text-shadow: 2px 2px 4px black; padding-left: 5px; padding-right: 5px; border-radius: 5px;'>CATASTROPHIC</span><br/>";
+                            } else if (alert.properties.parameters.flashFloodDamageThreat == "CONSIDERABLE") {
+                                alertDetails.innerHTML += "Flash Flood Damage Threat: <span style='background-color: white; color: black; padding-left: 5px; padding-right: 5px; border-radius: 5px;'>CONSIDERABLE</span><br/>";
+                            }
+            
+                            alertDetails.innerHTML += `SOURCE: ${alert.properties.parameters.flashFloodDetection}`;
+                        }
+                    });
+
+                    alertsLayerGroup.addLayer(alertOutline);
+                    alertsLayerGroup.addLayer(alertLayer);
                 }
-
-                const alertOutline = L.geoJSON(alert.geometry, {
-                    style: {
-                        color: 'black',
-                        weight: 5,
-                        opacity: 1,
-                        fillColor: fillColor,
-                        fillOpacity: fillOpacity
-                    }
-                });
-
-                const alertLayer = L.geoJSON(alert.geometry, {
-                    style: {
-                        color: color,
-                        weight: 2,
-                        opacity: 1,
-                        dashArray: dashes,
-                        fillColor: 'transparent',
-                        fillOpacity: 0
-                    }
-                });
-
-                const options = {
-                    month: 'short',
-                    day: '2-digit',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: true
-                }; 
-
-                alertLayer.on('click', function() {
-                    alertEvent.innerHTML = alert.properties.event;
-                    alertEvent.style.backgroundColor = color;
-                    alertDetails.innerText = `${alert.properties.areaDesc}\nExpires: ${Intl.DateTimeFormat('en-US', options).format(new Date(alert.properties.expires))}\n`;
-        
-                    alertDetails.style.display = 'block';
-                    alertDropdown.style.display = 'block';
-                    closeWarningButton.style.display = 'block';
-                    alertEventBG.style.display = 'block';
-        
-                    descriptionDisplay.innerHTML = alert.properties.description.replace(/\n/g, '<br/>');
-        
-                    if (alert.properties.event == "Severe Thunderstorm Warning") {
-                        if (alert.properties.parameters.thunderstormDamageThreat == "DESTRUCTIVE") {
-                            alertDetails.innerHTML += "<i style='background-color: purple; padding-left: 5px; padding-right: 10px; border-radius: 5px;'>THIS IS A DESTRUCTIVE STORM</i><br/>";
-                        } else if (alert.properties.parameters.thunderstormDamageThreat == "CONSIDERABLE") {
-                            alertDetails.innerHTML += "<i style='background-color: white; color: black; padding-left: 5px; padding-right: 10px; border-radius: 5px;'>THIS IS A CONSIDERABLE STORM</i><br/>";
-                        }
-        
-                        var hail;
-                        
-                        if (alert.properties.parameters.maxHailSize) {
-                            hail = alert.properties.parameters.maxHailSize;
-                        } else {
-                            hail = '0.00';
-                        }
-        
-                        alertDetails.innerHTML += `Hail: ${hail} in<br/>`;
-                        alertDetails.innerHTML += `Wind: ${alert.properties.parameters.maxWindGust}<br/>`;
-        
-                        if (alert.properties.parameters.tornadoDetection) {
-                            alertDetails.innerHTML += `Tornado: <span style="color: red;">${alert.properties.parameters.tornadoDetection}</span>`;
-                        }
-                    } else if (alert.properties.event == "Tornado Warning") {
-        
-                        if (alert.properties.parameters.tornadoDetection == "OBSERVED") {
-                            alertDetails.innerHTML += `Tornado: <span style="background-color: white; color: red; padding-left: 5px; padding-right: 5px; border-radius: 5px;">${alert.properties.parameters.tornadoDetection}</span><br/>`;
-                        } else {
-                            alertDetails.innerHTML += `Tornado: ${alert.properties.parameters.tornadoDetection}<br/>`;
-                        }
-        
-                        alertDetails.innerHTML += `Hail: ${alert.properties.parameters.maxHailSize} in`;
-                    } else if (alert.properties.event == "Flash Flood Warning") {
-                        if (alert.properties.parameters.flashFloodDamageThreat == "CATASTROPHIC") {
-                            alertEvent.innerHTML = 'FLASH FLOOD EMERGENCY';
-                            alertDetails.innerHTML += "Flash Flood Damage Threat: <span style='background-color: magenta; text-shadow: 2px 2px 4px black; padding-left: 5px; padding-right: 5px; border-radius: 5px;'>CATASTROPHIC</span><br/>";
-                        } else if (alert.properties.parameters.flashFloodDamageThreat == "CONSIDERABLE") {
-                            alertDetails.innerHTML += "Flash Flood Damage Threat: <span style='background-color: white; color: black; padding-left: 5px; padding-right: 5px; border-radius: 5px;'>CONSIDERABLE</span><br/>";
-                        }
-        
-                        alertDetails.innerHTML += `SOURCE: ${alert.properties.parameters.flashFloodDetection}`;
-                    }
-                });
-
-                alertsLayerGroup.addLayer(alertOutline);
-                alertsLayerGroup.addLayer(alertLayer);
-            });
         }
 
     }

@@ -7,14 +7,11 @@
 
 # ⚡ Features:
 - 🌧️ 5-day forecast from the NWS for your location
-- 🗺️ Live radar map
-- 📡 Radar updates every minute (experimental)
+- 🗺️ Live radar map with watches & warnings
+- 📡 Radar updates every minute (experimental), alerts update every 30 seconds
 - ⚠️ Alerts for your location
 - 🔔 Notifies you when a new alert is issued for your location
 - 🔄️ Forecast automatically refreshes every minute
 - ✅ Checks for new alerts every 5 seconds
 
-# 🌩️ Coming Soon
-- Warning polygons (radar; finished, working on watches)
-- Watch polygons (radar)
-- Alert info popup (radar finished, working on watches)
+[//]: # # 🌩️ Coming Soon

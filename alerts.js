@@ -150,6 +150,15 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (event.toLowerCase().includes('hurricane warning')) {
             bg.style.backgroundColor = 'rgb(0, 212, 0)'
             info.style.backgroundColor = 'rgb(0, 122, 0)'
+        } else if (event.toLowerCase().includes('winter storm warning')) {
+            bg.style.backgroundColor = 'rgb(254,106,179)'
+            info.style.backgroundColor = 'rgb(254,106,179)'
+        } else if (event.toLowerCase().includes('winter storm watch')) {
+            bg.style.backgroundColor = 'rgb(32,77,158)'
+            info.style.backgroundColor = 'rgb(32,77,158)'
+        } else if (event.toLowerCase().includes('winter weather advisory')) {
+            bg.style.backgroundColor = '#337baa'
+            info.style.backgroundColor = '#337baa'
         } else {
             bg.style.backgroundColor = 'rgb(0, 119, 255)'
             info.style.backgroundColor = 'rgb(86, 165, 255)'
