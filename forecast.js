@@ -205,5 +205,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     getForecast();
 
-    setInterval(getForecast, 60000);
+    setInterval(getForecast, 600000);
 })
