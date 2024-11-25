@@ -15,6 +15,6 @@
 - ✅ Checks for new alerts every 5 seconds
 
 # 🌩️ Coming Soon
-- Warning polygons (radar)
+- Warning polygons (radar; finished, working on watches)
 - Watch polygons (radar)
-- Alert info popup (radar)
+- Alert info popup (radar finished, working on watches)
