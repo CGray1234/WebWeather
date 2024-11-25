@@ -177,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 } else if (event == 'Flood Warning') {
                     color = 'green';
+
                 }
 
                 const alertOutline = L.geoJSON(alert.geometry, {
@@ -195,6 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         weight: 2,
                         opacity: 1,
                         dashArray: dashes,
+                        fillColor: 'transparent',
+                        fillOpacity: 0
                     }
                 });
 
