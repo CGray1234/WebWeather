@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const descriptionDisplay = document.getElementById('description');
     const closeWarningButton = document.getElementById('closeAlert');
 
+    const locationButton = document.getElementById('hideLocation');
+    var showLocation = true;
+
     function loadMap() {
         navigator.geolocation.getCurrentPosition(setMapToLocation, function() {return;}, { enableHighAccuracy: true});
     }
@@ -39,9 +42,29 @@ document.addEventListener('DOMContentLoaded', () => {
             iconUrl: './assets/locationMarker.png',
             iconSize: iconSize,
             iconAnchor: iconSize / 2
-        })
+        });
 
-        L.marker(coords, { icon: locationIcon }).addTo(map);
+        const markerLayerGroup = L.layerGroup().addTo(map);
+        var marker = L.marker(coords, { icon: locationIcon });
+
+        function makeLocationMarker() {
+            if (showLocation == true) {
+                markerLayerGroup.addLayer(marker);
+                map.invalidateSize();
+            } else {
+                markerLayerGroup.clearLayers();
+                map.invalidateSize();
+            }
+        }
+        makeLocationMarker();
+
+        function toggleLocationMarker() {
+            showLocation = !showLocation;
+            makeLocationMarker();
+        }
+        locationButton.addEventListener('click', function() { // use addEventListener because onclick is used by another script
+            toggleLocationMarker();
+        })
 
         map.attributionControl.setPrefix(false);
 
