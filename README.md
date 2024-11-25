@@ -1,5 +1,5 @@
 ## <img src="./assets/logo.png" alt="WebWeather Logo" width="500"/>
-WebWeather is a fast & simple website that displays your local weather forecast, alerts, and radar all in one place.
+[WebWeather](https://cgray1234.github.io/WebWeather/) is a fast & simple website that displays your local weather forecast, alerts, and radar all in one place.
 
 
 > [!NOTE]
