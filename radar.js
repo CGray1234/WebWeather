@@ -15,8 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const locationButton = document.getElementById('hideLocation');
     var showLocation = true;
 
+    const radarApi = 'https://api.rainviewer.com/public/weather-maps.json';
+
     function loadMap() {
-        navigator.geolocation.getCurrentPosition(setMapToLocation, function() {return;}, { enableHighAccuracy: true});
+        navigator.geolocation.getCurrentPosition(setMapToLocation, function() {return;}, { enableHighAccuracy: true });
     }
 
     function setMapToLocation(location) {
@@ -30,12 +32,24 @@ document.addEventListener('DOMContentLoaded', () => {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        L.tileLayer.wms("https://opengeo.ncep.noaa.gov/geoserver/conus/conus_cref_qcd/ows?", {
-            layers: 'conus_cref_qcd',
-            format: 'image/png',
-            transparent: true,
-            timestamp: new Date()
-        }).addTo(map);
+        async function fetchAndDisplayRadarData() {
+            const data = await fetch(`https://api.rainviewer.com/public/weather-maps.json`).then(response => response.json());
+            const latestPath = data.radar.past[data.radar.past.length - 1].path;
+            
+            const tileUrl = data.host + latestPath + `/256/{z}/{x}/{y}/4/1_1.png`;
+            const radar = L.tileLayer(tileUrl, {
+                attribution: 'RainViewer',
+                opacity: 0.6
+            }).addTo(map);
+        }
+        fetchAndDisplayRadarData();
+
+        // L.tileLayer.wms("https://opengeo.ncep.noaa.gov/geoserver/conus/conus_cref_qcd/ows?", {
+        //     layers: 'conus_cref_qcd',
+        //     format: 'image/png',
+        //     transparent: true,
+        //     timestamp: new Date()
+        // }).addTo(map);
 
         var iconSize = [15, 15]
 
