@@ -142,6 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     || alert.properties.event.includes("Tornado")
                     || alert.properties.event.includes("Severe Thunderstorm")
                     || alert.properties.event.includes("Flood")
+                    || alert.properties.event.includes('Wind')
+                    || alert.properties.event.includes('Avalanche')
                 );
 
                 loadPolygons(filteredData);
@@ -238,6 +240,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         color = 'salmon';
                     } else if (alert.properties.event == 'Special Weather Statement') {
                         color = 'rgb(135,206,235)';
+                    } else if (alert.properties.event == 'High Wind Warning') {
+                        color = '#daa520';
+                    } else if (alert.properties.event == 'High Wind Watch') {
+                        color = '#d2b48c';
+                    } else if (alert.properties.event == 'Avalanche Warning') {
+                        color = '#1e90ff';
+                    } else if (alert.properties.event == 'Avalanche Watch') {
+                        color = '#f4a460';
                     }
 
                     const alertOutline = L.geoJSON(geometry, {
