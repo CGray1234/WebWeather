@@ -14,4 +14,5 @@
 - 🔄️ Forecast automatically refreshes every 10 minutes
 - ✅ Checks for new alerts every 5 seconds
 
-<!-- # 🌩️ Coming Soon
+# 🌩️ Coming Soon
+City labels over radar layers
