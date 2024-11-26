@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         color = 'rgb(135,206,235)';
                     } else if (alert.properties.event == 'High Wind Warning') {
                         color = '#daa520';
-                    } else if (alert.properties.event == 'High Wind Watch') {
+                    } else if (alert.properties.event == 'High Wind Watch' || alert.properties.event == 'Wind Advisory') {
                         color = '#d2b48c';
                     } else if (alert.properties.event == 'Avalanche Warning') {
                         color = '#1e90ff';
