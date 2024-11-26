@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
         L.tileLayer.wms("https://opengeo.ncep.noaa.gov/geoserver/conus/conus_cref_qcd/ows?", {
             layers: 'conus_cref_qcd',
             format: 'image/png',
-            transparent: true
+            transparent: true,
+            timestamp: new Date()
         }).addTo(map);
 
         var iconSize = [15, 15]
