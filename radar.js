@@ -137,13 +137,15 @@ document.addEventListener('DOMContentLoaded', () => {
         function fetchAlerts() {
             fetch(api).then(res => res.json()).then(data => {
                 const filteredData = data.features.filter(alert => 
-                    alert.properties.event.includes("Winter")
+                    (alert.properties.event.includes("Winter")
                     || alert.properties.event == "Special Weather Statement"
                     || alert.properties.event.includes("Tornado")
                     || alert.properties.event.includes("Severe Thunderstorm")
                     || alert.properties.event.includes("Flood")
                     || alert.properties.event.includes('Wind')
-                    || alert.properties.event.includes('Avalanche')
+                    || alert.properties.event.includes('Avalanche')) && (
+                        alert.properties.event != 'Lake Wind Advisory'
+                    )
                 );
 
                 loadPolygons(filteredData);
