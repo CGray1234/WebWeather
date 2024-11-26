@@ -7,7 +7,8 @@
 
 # ⚡ Features:
 - 🌧️ 5-day forecast from the NWS for your location
-- 🗺️ Live CONUS composite reflectivity radar map with watches & warnings
+- 🗺️ Live rain and snow radar with watches & warnings
+- 🖱️ Clicking alert polygons will display details on the alert
 - 📡 Radar updates every minute (experimental), alert polygons update every 30 seconds
 - ⚠️ Alerts for your location
 - 🔔 Notifies you when a new alert is issued for your location
