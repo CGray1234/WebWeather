@@ -16,4 +16,5 @@
 - ✅ Checks for new alerts every 5 seconds
 
 # 🌩️ Coming Soon
-City labels over radar layers
+- Map-in-motion
+- City labels over radar layers
