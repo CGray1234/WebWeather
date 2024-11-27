@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const alertOutline = L.geoJSON(geometry, {
                         style: {
                             color: 'black',
-                            weight: 5,
+                            weight: 3.5,
                             opacity: 1,
                             fillColor: fillColor,
                             fillOpacity: fillOpacity
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const alertLayer = L.geoJSON(geometry, {
                         style: {
                             color: color,
-                            weight: 2,
+                            weight: 1.5,
                             opacity: 1,
                             dashArray: dashes,
                             fillColor: 'transparent',

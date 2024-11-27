@@ -169,6 +169,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return './assets/tropical-storm.png';
             } else if (forecast.toLowerCase().includes("snow")) {
                 return './assets/snowflake.svg';
+            } else if (forecast.toLowerCase().includes("storm") && forecast.toLowerCase().includes("likely")) {
+                return './assets/cloud-bolt-solid.png';
             } else if (forecast.toLowerCase().includes("storm") && forecast.toLowerCase().includes("chance")) {
                 return './assets/cloud-sun-bolt-solid.png';
             } else if (forecast.toLowerCase().includes('chance') && (forecast.toLowerCase().includes('showers') || forecast.toLowerCase().includes('rain'))) {
@@ -187,8 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return './assets/tropical-storm.png';
             } else if (forecast.toLowerCase().includes("snow")) {
                 return './assets/snowflake.svg';
-            } else if (forecast.toLowerCase().includes("storm") && forecast.toLowerCase().includes("chance")) {
-                return './assets/cloud-sun-bolt-solid.png';
             } else if (forecast.toLowerCase().includes("storm")) {
                 return './assets/cloud-bolt-solid.png';
             } else if (forecast.toLowerCase().includes('rain') || forecast.toLowerCase().includes('shower')) {
