@@ -88,9 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
         map.attributionControl.setPrefix(false);
 
         var watermark;
-
+        var mapOpen = false;
         function mapSize() {
-            if (hideLocationButton.style.display != 'none') { // use hideLocation button just so i dont have to make another boolean value & using mapReturn wouldnt work
+            if (!mapOpen) {
+                mapOpen = true;
                 closeAlert();
                 mapDiv.style.width = '100%';
                 mapDiv.style.height = '100%';
@@ -103,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 map.invalidateSize(); // refresh map size
                 watermark = L.control.watermark({ position: 'bottomleft' }).addTo(map);
             } else {
+                mapOpen = false;
                 closeAlert();
                 mapDiv.style.width = '250px';
                 mapDiv.style.height = '150px';
