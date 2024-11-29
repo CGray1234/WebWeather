@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const mapDiv = document.getElementById("map");
+    const mapContainer = document.getElementById("mapContainer");
     const radarButton = document.getElementById("mapLabel");
     const hideLocationButton = document.getElementById("hideLocation");
     const mapReturn = document.getElementById("mapReturn");
@@ -32,9 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        async function fetchAndDisplayRadarData() {
-            const data = await fetch(`https://api.rainviewer.com/public/weather-maps.json`).then(response => response.json());
-            const latestPath = data.radar.past[data.radar.past.length - 1].path;
+        async function fetchAndDisplayRadarData(time) {
+            if (!time) {
+                time = 12;
+            }
+            const data = await fetch(`https://api.rainviewer.com/public/weather-maps.json?timestamp=${new Date}`).then(response => response.json()); // use new date to prevent caching
+            const latestPath = data.radar.past[time].path;
             
             const tileUrl = data.host + latestPath + `/256/{z}/{x}/{y}/4/1_1.png`;
             const radar = L.tileLayer(tileUrl, {
@@ -42,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 opacity: 0.6
             }).addTo(map);
         }
-        fetchAndDisplayRadarData();
+        fetchAndDisplayRadarData(12);
 
         // L.tileLayer.wms("https://opengeo.ncep.noaa.gov/geoserver/conus/conus_cref_qcd/ows?", {
         //     layers: 'conus_cref_qcd',
@@ -91,8 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 mapDiv.style.width = '100%';
                 mapDiv.style.height = '100%';
 
+                mapContainer.style.width = '100%';
+                mapContainer.style.height = '100%';
+
                 mapReturn.style.display = 'block';
-                hideLocationButton.style.display = 'none'; // hide hideLocation button because it shows through the map for some reason
 
                 map.invalidateSize(); // refresh map size
                 watermark = L.control.watermark({ position: 'bottomleft' }).addTo(map);
@@ -101,8 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 mapDiv.style.width = '250px';
                 mapDiv.style.height = '150px';
 
+                mapContainer.style.width = '250px';
+                mapContainer.style.height = '150px';
+
                 mapReturn.style.display = 'none';
-                hideLocationButton.style.display = 'block';
 
                 map.invalidateSize(); // refresh map size
                 map.removeControl(watermark);

@@ -143,6 +143,7 @@ div#detailsEvent {
     font-size: 50px;
     text-align: center;
     color: white;
+    font-family: Bebas Neue;
 }
 
 div#detailsArea {
@@ -154,6 +155,7 @@ div#detailsArea {
     overflow: hidden;
     text-overflow: ellipsis;
     background-color: rgb(0, 0, 0);
+    font-family: Bebas Neue;
 }
 
 div#extraDetails {
@@ -162,6 +164,7 @@ div#extraDetails {
     text-align: center;
     color: white;
     background-color: black;
+    font-family: Bebas Neue;
 }
 
 div#detailsDesc {
@@ -171,6 +174,9 @@ div#detailsDesc {
     background-color: black;
     overflow: auto;
     height: 85%;
+    font-family: monospace;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .test {
@@ -306,6 +312,16 @@ button#hideLocation:hover {
     right:0;
 }
 
+#mapContainer {
+    width: 250px;
+    height: 150px;
+    position: absolute;
+    background-color: white;
+    bottom:0;
+    right:0;
+    z-index: 5;
+}
+
 button#mapLabel {
     border: none;
     width: 250px;
@@ -427,6 +443,8 @@ div#description {
     max-height: 550px;
     overflow: auto;
     display: none;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 div#options {

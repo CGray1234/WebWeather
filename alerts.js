@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fetchAlerts(position) {
         let latlong = `${position.coords.latitude},${position.coords.longitude}`;
+        // let latlong = '-89.50, 33.86'
         let zone;
 
         fetch(`${locationApi}${latlong}`)
@@ -62,8 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (newWarnings > 0 && hideAlerts) {
                         numOfAlerts = filteredData.length;
                         const properGrammar = newWarnings === 1 ? 'alert!' : 'alerts!';
-                        const notif = new Notification('You have ' + newWarnings + ' new weather ' + properGrammar);
-                        notif.onclick(window.open('/RadarOmega%20Style/'));
+                        const notif = new Notification('WebWeather', {
+                            body: 'You have ' + newWarnings + ' new weather ' + properGrammar,
+                            icon: './assets/favicon.ico'
+                        });
+                        notif.onclick(window.open('/'));
                     }
 
                     filteredData.forEach(alert => {
