@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     || alert.properties.event.includes("Flood")
                     || alert.properties.event.includes('Wind')
                     || alert.properties.event.includes('Avalanche')) && (
-                        alert.properties.event != 'Lake Wind Advisory' && alert.properties.event != 'Brisk Wind Advisory'
+                        alert.properties.event != 'Lake Wind Advisory' && alert.properties.event != 'Brisk Wind Advisory' && alert.properties.event != 'Avalanche Advisory'
                     )
                 );
 
