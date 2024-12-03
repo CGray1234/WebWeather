@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const locationButton = document.getElementById('hideLocation');
     var showLocation = true;
 
+    const playButton = document.getElementById('playRadar');
+
     const radarApi = 'https://api.rainviewer.com/public/weather-maps.json';
 
     function loadMap() {
@@ -33,7 +35,35 @@ document.addEventListener('DOMContentLoaded', () => {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
+        // var animatingRadar = false;
+        // let radarInterval;
+        // function animateRadar(val) {
+        //     if (val) {
+        //         function animateSteps() {
+        //             fetchAndDisplayRadarData(0);
+        //             setTimeout(() => {fetchAndDisplayRadarData(1);}, 1000);
+        //             setTimeout(() => {fetchAndDisplayRadarData(2);}, 2000);
+        //             setTimeout(() => {fetchAndDisplayRadarData(3);}, 3000);
+        //             setTimeout(() => {fetchAndDisplayRadarData(4);}, 4000);
+        //             setTimeout(() => {fetchAndDisplayRadarData(5);}, 5000);
+        //             setTimeout(() => {fetchAndDisplayRadarData(6);}, 6000);
+        //             setTimeout(() => {fetchAndDisplayRadarData(7);}, 7000);
+        //             setTimeout(() => {fetchAndDisplayRadarData(8);}, 8000);
+        //             setTimeout(() => {fetchAndDisplayRadarData(9);}, 9000);
+        //             setTimeout(() => {fetchAndDisplayRadarData(10);}, 10000);
+        //             setTimeout(() => {fetchAndDisplayRadarData(11);}, 11000);
+        //             setTimeout(() => {fetchAndDisplayRadarData(12);}, 12000);
+        //         }
+        //         animateSteps();
+        //         radarInterval = setInterval(animateSteps, 15000)
+        //     } else {
+        //         clearInterval(radarInterval)
+        //     }
+        // }
+        const radarLayer = L.layerGroup().addTo(map);
+
         async function fetchAndDisplayRadarData(time) {
+            radarLayer.clearLayers();
             if (!time) {
                 time = 12;
             }
@@ -44,9 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const radar = L.tileLayer(tileUrl, {
                 attribution: 'RainViewer',
                 opacity: 0.6
-            }).addTo(map);
+            });
+            radarLayer.addLayer(radar);
+            
         }
-        fetchAndDisplayRadarData(12);
+        fetchAndDisplayRadarData(11);
+        // playButton.onclick = animateRadar(!animatingRadar);
 
         // L.tileLayer.wms("https://opengeo.ncep.noaa.gov/geoserver/conus/conus_cref_qcd/ows?", {
         //     layers: 'conus_cref_qcd',
@@ -152,9 +185,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     || alert.properties.event.includes("Tornado")
                     || alert.properties.event.includes("Severe Thunderstorm")
                     || alert.properties.event.includes("Flood")
-                    || alert.properties.event.includes('Wind')
-                    || alert.properties.event.includes('Avalanche')) && (
-                        alert.properties.event != 'Lake Wind Advisory' && alert.properties.event != 'Brisk Wind Advisory' && alert.properties.event != 'Avalanche Advisory'
+                    || alert.properties.event.includes('Extreme Wind')
+                    || alert.properties.event.includes('Avalanche')
+                    || alert.properties.event.includes('Snow Squall')
+                    || alert.properties.event.includes('Blizzard')) && (
+                        alert.properties.event != 'Avalanche Advisory'
                     )
                 );
 
@@ -260,6 +295,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         color = '#1e90ff';
                     } else if (alert.properties.event == 'Avalanche Watch') {
                         color = '#f4a460';
+                    } else if (alert.properties.event == 'Snow Squall Warning') {
+                        color = '#c71585';
+                    } else if (alert.properties.event == 'Blizzard Warning') {
+                        color = '#ff4500';
                     }
 
                     const alertOutline = L.geoJSON(geometry, {
