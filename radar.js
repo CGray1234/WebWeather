@@ -188,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     || alert.properties.event.includes('Extreme Wind')
                     || alert.properties.event.includes('Avalanche')
                     || alert.properties.event.includes('Snow Squall')
+                    || alert.properties.event.includes('Tsunami Warning')
                     || alert.properties.event.includes('Blizzard')) && (
                         alert.properties.event != 'Avalanche Advisory'
                     )
@@ -299,6 +300,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         color = '#c71585';
                     } else if (alert.properties.event == 'Blizzard Warning') {
                         color = '#ff4500';
+                    } else if (alert.properties.event == 'Tsunami Warning') {
+                        color = '#fd6347';
                     }
 
                     const alertOutline = L.geoJSON(geometry, {
