@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const warningViewToggle = document.getElementById('openWarnings');
+    var warningView = false;
     warningViewToggle.onclick = toggleAlerts;
     const warningsContainer = document.getElementById('alertsContainer');
 
@@ -217,11 +218,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function toggleAlerts() {
-        if (warningsContainer.style.display === 'none') {
+        if (!warningView) {
             warningsContainer.style.display = 'initial';
         } else {
             warningsContainer.style.display = 'none';
         }
+        warningView = !warningView;
     }
 
     getLocation();
