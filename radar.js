@@ -390,6 +390,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     alertsLayerGroup.addLayer(alertOutline);
                     alertsLayerGroup.addLayer(alertLayer);
+
+                    if (alert.geometry == null) {
+                        alertLayer.bringToBack();
+                        alertOutline.bringToBack();
+                    }
                 }
         }
 
